@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:latest
+FROM ubuntu:bionic as builder
 
 LABEL Christian Sargusingh "https://github.com/cSDes1gn"
 
@@ -35,6 +35,14 @@ RUN snap_version="$(awk '/^version:/{print $2}' /snap/snapcraft/current/meta/sna
 RUN echo 'exec "$SNAP/usr/bin/python3" "$SNAP/bin/snapcraft" "$@"' >> /snap/bin/snapcraft
 RUN chmod +x /snap/bin/snapcraft
 
+# Multi-stage build, only need the snaps from the builder. Copy them one at a time so they can be cached.
+FROM arm64v8/ubuntu:latest
+
+COPY --from=builder /snap/core18 /snap/core18
+COPY --from=builder /snap/core20 /snap/core20
+COPY --from=builder /snap/snapcraft /snap/snapcraft
+COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
+
 # Set the work directory and create the folder to copy source code into
 WORKDIR /srv
 
@@ -55,9 +63,6 @@ ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="arm64"
 ENV SNAPCRAFT_BUILD_ENVIRONMENT="host"
-
-# snapcraft login with token
-RUN echo "${SNAP_TOKEN}" | snapcraft login --with -
 
 # copy build source code
 COPY .env /srv/.env
