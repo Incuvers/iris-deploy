@@ -22,6 +22,8 @@ printf "%b" "${OKB}Pulling $OBJECT to S3 bucket $BUCKET as $OBJECT${NC}\n"
 ./s3_pull.py -t "$OBJECT" -o "$OBJECT" -b "$BUCKET"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
+# TODO: Add checksum cross-validation
+
 # login to snapcraft and release to edge
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
 echo "${SNAP_TOKEN}" | snapcraft login --with -
