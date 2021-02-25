@@ -57,7 +57,6 @@ ENV SNAP_ARCH="arm64"
 ENV SNAPCRAFT_BUILD_ENVIRONMENT="host"
 
 # snapcraft login with token
-ARG SNAP_TOKEN
 RUN echo "${SNAP_TOKEN}" | snapcraft login --with -
 
 # copy build source code
