@@ -44,6 +44,7 @@ COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Set the work directory and create the folder to copy source code into
+VOLUME ["/srv"]
 WORKDIR /srv
 
 # Generate locale.
@@ -70,4 +71,4 @@ COPY deploy.sh /srv/deploy.sh
 COPY s3_pull.py /srv/s3_pull.py
 COPY secrets/ /srv/secrets/
 
-ENTRYPOINT [ "/deploy.sh" ]
+ENTRYPOINT [ "deploy.sh" ]
