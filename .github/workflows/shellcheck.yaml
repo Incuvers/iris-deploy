@@ -1,0 +1,23 @@
+---
+name: shellcheck
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Install test dependencies.
+        run: sudo apt install shellcheck -y
+
+      - name: Shellcheck docker build script
+        working-directory: docker
+        run: shellcheck -x build.sh
