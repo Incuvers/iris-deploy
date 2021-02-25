@@ -18,6 +18,6 @@ jobs:
       - name: Install test dependencies.
         run: sudo apt install shellcheck -y
 
-      - name: Shellcheck docker build script
+      - name: Shellcheck docker deploy script
         working-directory: docker
-        run: shellcheck -x build.sh
+        run: shellcheck -x deploy.sh
