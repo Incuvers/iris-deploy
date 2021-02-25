@@ -1,0 +1,13 @@
+---
+name: Iris Deploy
+author: Christian Sargusingh
+description: Deploys iris-incuvers core20 snap on the edge channel
+inputs:
+  snap_token:
+    description: 'Snapcraft login token for snap deployment'
+    required: true
+runs:
+  using: docker
+  image: docker/Dockerfile
+  args:
+    - ${{ inputs.snap_token }}

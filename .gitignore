@@ -1,0 +1,8 @@
+*.diff
+.DS_Store
+
+# ignore keys
+docker/secrets/*.key
+
+# ignore keys
+lxd/secrets/*.key
