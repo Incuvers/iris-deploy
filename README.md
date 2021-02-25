@@ -12,7 +12,7 @@ snap-deploy:
 name: iris snap deployment
 runs-on: [self-hosted, linux, ARM64]
 steps:
-    - name: Deploy iris snap to edge
+  - name: Deploy iris snap to edge
     uses: Incuvers/iris-deploy@master
     with:
         SNAP_TOKEN: ${{ secrets.SNAP_TOKEN }}
