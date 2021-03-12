@@ -44,14 +44,14 @@ COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Set the work directory and create the folder to copy source code into
-WORKDIR /srv
+WORKDIR /tmp
 
 # Generate locale.
 RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && locale-gen en_US.UTF-8
 # install required pip and apt dependancies
-COPY apt-pkgs.txt /srv/apt-pkgs.txt
+COPY apt-pkgs.txt /tmp/apt-pkgs.txt
 RUN xargs -a apt-pkgs.txt sudo apt install -y --no-install-recommends
-COPY requirements.txt /srv/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -r requirements.txt
 
 # Set the proper environment.
@@ -65,9 +65,9 @@ ENV SNAP_ARCH="arm64"
 ENV SNAPCRAFT_BUILD_ENVIRONMENT="host"
 
 # copy build source code
-COPY .env /srv/.env
-COPY deploy.sh /srv/deploy.sh
-COPY s3_pull.py /srv/s3_pull.py
+COPY .env /.env
+COPY deploy.sh /deploy.sh
+COPY s3_pull.py /s3_pull.py
 # COPY secrets/ /srv/secrets/
 
-ENTRYPOINT [ "/srv/deploy.sh" ]
+ENTRYPOINT [ "deploy.sh" ]
