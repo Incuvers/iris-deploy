@@ -2,25 +2,25 @@
 name: Iris Deploy
 author: Christian Sargusingh
 description: Deploys iris-incuvers core20 snap on the edge channel
-inputs:
-  SNAP_TOKEN:
-    description: 'Snapcraft login token for snap deployment'
-    required: true
-  SLACK_IDENTIFIER:
-    description: 'Slack channel webhook path'
-    required: true
-  ACCESS_KEY:
-    description: 'AWS staging machine secret access key'
-    required: true
-  ACCESS_ID:
-    description: 'AWS staging machine secret access key id'
-    required: true
+# inputs:
+#   SNAP_TOKEN:
+#     description: 'Snapcraft login token for snap deployment'
+#     required: true
+#   SLACK_IDENTIFIER:
+#     description: 'Slack channel webhook path'
+#     required: true
+#   ACCESS_KEY:
+#     description: 'AWS staging machine secret access key'
+#     required: true
+#   ACCESS_ID:
+#     description: 'AWS staging machine secret access key id'
+#     required: true
 runs:
   using: 'docker'
   image: 'docker/Dockerfile'
   # passed as environment variables in docker image build
-  args:
-    - ${{ inputs.SNAP_TOKEN }}
-    - ${{ inputs.SLACK_IDENTIFIER }}
-    - ${{ inputs.ACCESS_KEY }}
-    - ${{ inputs.ACCESS_ID }}
+#   args:
+#     - ${{ inputs.SNAP_TOKEN }}
+#     - ${{ inputs.SLACK_IDENTIFIER }}
+#     - ${{ inputs.ACCESS_KEY }}
+#     - ${{ inputs.ACCESS_ID }}
