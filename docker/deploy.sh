@@ -3,6 +3,8 @@
 # exit on error
 set -e
 
+echo "$PWD"
+
 source .env
 
 # handle all non-zero exit status codes with a slack notification
