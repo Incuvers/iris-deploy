@@ -6,9 +6,18 @@ inputs:
   SNAP_TOKEN:
     description: 'Snapcraft login token for snap deployment'
     required: true
+  SLACK_IDENTIFIER:
+    description: 'Slack channel webhook path'
+    required: true
+  ACCESS_KEY:
+    description: 'AWS staging machine secret access key'
+    required: true
+  ACCESS_ID:
+    description: 'AWS staging machine secret access key id'
+    required: true
 runs:
-  using: docker
-  image: docker/Dockerfile
+  using: 'docker'
+  image: 'docker/Dockerfile'
   # passed as environment variables in docker image build
   args:
     - ${{ inputs.SNAP_TOKEN }}
