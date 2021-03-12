@@ -8,18 +8,13 @@ Modified: 2021-03
 ## Action Runner Brief
 The code in this repository is executed as defined by the [action.yaml](action.yaml) file in the root of this repository. This action can be invoked in another repositories build-spec by pointing to this action (see [Action Usage](#action-usage)). This action is not deployed to a server directly and instead is pulled by the github action runner when the build-spec requires this action. This way subsequent updates to this deploy action on the target branch will be automatically be pulled by the deployment server so it is always running the latest source code.
 
-## Iris Deploy Server Deployment
-To configure the iris deploy server visit the Incuvers:automation follow the setup instructions and launch the iris deploy server configuration playbook:
-```bash
-make id-deploy
-```
-
 ## Action Usage
+Sample workflow job:
 ```yaml
 ...
 snap-deploy:
 name: iris snap deployment
-runs-on: [self-hosted, linux, ARM64]
+runs-on: [self-hosted, linux, x64]
 steps:
   - name: Deploy iris snap to edge
     uses: Incuvers/iris-deploy@master
