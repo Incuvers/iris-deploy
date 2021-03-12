@@ -3,11 +3,7 @@
 # exit on error
 set -e
 
-echo "$PWD"
-
-ls -la
-
-source .env
+source /srv/.env
 
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
@@ -23,7 +19,7 @@ handler () {
 
 # pull .snap file from s3 bucket
 printf "%b" "${OKB}Pulling $OBJECT to S3 bucket $BUCKET as $OBJECT${NC}\n"
-./s3_pull.py -t "$OBJECT" -o "$OBJECT" -b "$BUCKET"
+/srv/s3_pull.py -t "$OBJECT" -o "$OBJECT" -b "$BUCKET"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # TODO: Add checksum cross-validation
