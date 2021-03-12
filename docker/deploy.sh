@@ -12,7 +12,7 @@ handler () {
     if [ "$1" != "0" ]; then
         printf "%b" "${OKB}Notifying slack channel of snap build failure.${NC}\n"
         curl -X POST -H 'Content-type: application/json' \
-            --data "{\"text\":\"Snap deploy server job failed with exit status: $1\"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
+            --data "{\"text\":\"Snap deploy server job failed with exit status: $1\"}" https://hooks.slack.com/services/"$INPUT_SLACK_IDENTIFIER"
         printf "%b" "${OKG} ✓ ${NC}complete\n"
     fi
 }
@@ -26,12 +26,12 @@ printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # login to snapcraft and release to edge
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
-echo "${SNAP_TOKEN}" | snapcraft login --with -
+echo "${INPUT_SNAP_TOKEN}" | snapcraft login --with -
 snapcraft upload ./*.snap --release="${RELEASE_CHANNEL}"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # Notify slack channel of build success
 printf "%b" "${OKB}Notifying slack channel of snap build success.${NC}"
 curl -X POST -H 'Content-type: application/json' \
-    --data "{\"text\":\"Snap deployment complete. View the latest snap release: https://snapcraft.io/iris-incuvers/releases\"}" https://hooks.slack.com/services/"$SLACK_IDENTIFIER"
+    --data "{\"text\":\"Snap deployment complete. View the latest snap release: https://snapcraft.io/iris-incuvers/releases\"}" https://hooks.slack.com/services/"$INPUT_SLACK_IDENTIFIER"
 printf "%b" "${OKG} ✓ ${NC}complete"
