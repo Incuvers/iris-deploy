@@ -36,7 +36,7 @@ RUN echo 'exec "$SNAP/usr/bin/python3" "$SNAP/bin/snapcraft" "$@"' >> /snap/bin/
 RUN chmod +x /snap/bin/snapcraft
 
 # Multi-stage build, only need the snaps from the builder. Copy them one at a time so they can be cached.
-FROM arm64v8/ubuntu:latest
+FROM ubuntu:latest
 
 COPY --from=builder /snap/core18 /snap/core18
 COPY --from=builder /snap/core20 /snap/core20
