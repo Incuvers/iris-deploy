@@ -68,6 +68,6 @@ ENV SNAPCRAFT_BUILD_ENVIRONMENT="host"
 COPY .env /.env
 COPY deploy.sh /deploy.sh
 COPY s3_pull.py /s3_pull.py
-# COPY secrets/ /srv/secrets/
+# COPY secrets/ /tmp/secrets/
 
-ENTRYPOINT [ "deploy.sh" ]
+ENTRYPOINT [ "/deploy.sh" ]
