@@ -64,9 +64,11 @@ ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="arm64"
 ENV SNAPCRAFT_BUILD_ENVIRONMENT="host"
 
+WORKDIR /srv
 # copy build source code
-COPY deploy.sh /deploy.sh
-COPY s3_pull.py /s3_pull.py
+COPY deploy.sh /srv/deploy.sh
+COPY .env /srv/.env
+COPY s3_pull.py /srv/s3_pull.py
 # COPY secrets/ /tmp/secrets/
 
-ENTRYPOINT [ "/deploy.sh" ]
+ENTRYPOINT [ "/srv/deploy.sh" ]

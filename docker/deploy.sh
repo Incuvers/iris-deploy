@@ -3,27 +3,7 @@
 # exit on error
 set -e
 
-# cli
-OKG="\033[92m"
-OKB="\033[94m"
-NC="\033[0m"
-SHELL="/bin/bash"
-
-### FOR DEBUGGING PURPOSES ONLY (keys passed through github action secrets)###
-# ACCESS_ID="$(< secrets/access_id.key)"
-# ACCESS_KEY="$(< secrets/access_key.key)"
-# SLACK_IDENTIFIER="$(< secrets/slack.key)"
-# SNAP_TOKEN="$(< secrets/snap_token.key)"
-# export SNAP_TOKEN
-# export ACCESS_ID
-# export ACCESS_KEY
-
-# Required for aws s3 push script
-BUCKET="snapbuilds"
-OBJECT="iris-incuvers.snap"
-
-# Snap release channel
-RELEASE_CHANNEL="edge"
+source .env
 
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
