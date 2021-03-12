@@ -17,7 +17,7 @@ inputs:
     required: true
 runs:
   using: docker
-  image: docker/Dockerfile
+  image: Dockerfile
   # passed as environment variables in docker image build
   args:
     - ${{ inputs.SNAP_TOKEN }}
