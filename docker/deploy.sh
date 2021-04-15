@@ -23,7 +23,7 @@ SHELL="/bin/bash"
 
 # Required for aws s3 push script
 BUCKET="snapbuilds"
-OBJECT="iris-incuvers.snap"
+OBJECT="iris-incuvers-prod.snap"
 
 # Snap release channel
 RELEASE_CHANNEL="edge"
