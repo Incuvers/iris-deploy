@@ -4,3 +4,4 @@ pyaml
 click
 tabulate
 pymacaroons
+simplejson
