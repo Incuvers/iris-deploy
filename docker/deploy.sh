@@ -40,7 +40,7 @@ handler () {
 printf "%b" "${OKB}Pulling $OBJECT to S3 bucket $BUCKET as $OBJECT${NC}\n"
 /srv/s3_pull.py -t "$OBJECT" -o "$OBJECT" -b "$BUCKET"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
-
+export SNAP_VERSION=3.8
 # TODO: Add checksum cross-validation
 # login to snapcraft and release to edge
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
