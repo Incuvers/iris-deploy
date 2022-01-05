@@ -13,12 +13,13 @@ import os
 import logging
 import boto3
 
+
 def main(argv):
     target_file = ''
     obj = ''
     bucket = ''
     try:
-        opts, args = getopt.getopt(argv,"ht:o:b:",["target=","output=","bucket="])
+        opts, args = getopt.getopt(argv, "ht:o:b:", ["target=", "output=", "bucket="])
     except getopt.GetoptError:
         logging.exception("test.py -t <target> -o <outputfile> -b <bucket>")
         sys.exit(2)
@@ -43,14 +44,15 @@ def main(argv):
         aws_secret_access_key=os.environ['INPUT_ACCESS_KEY']
     )
 
-    s3.download_file(bucket, target_file, obj) # last argument is filename to save as
+    s3.download_file(bucket, target_file, obj)  # last argument is filename to save as
 
     logging.info("S3 download complete.")
+
 
 if __name__ == "__main__":
     # bind logging to config file
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s %(levelname)s %(threadName)s %(name)s %(message)s"
     )
     logging.info("S3 downloader script")
