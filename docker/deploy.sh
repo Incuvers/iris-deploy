@@ -48,12 +48,9 @@ printf "%b" "${OKG} ✓ ${NC}complete\n"
 # TODO: Add checksum cross-validation
 
 # login to snapcraft and release to edge
-echo $(which snapcraft)
-python3 -m pip list
-/snap/bin/snapcraft --help
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
-echo "${INPUT_SNAP_TOKEN}" | snapcraft login --with -
-snapcraft upload "$OBJECT" --release="${RELEASE_CHANNEL}"
+echo "${INPUT_SNAP_TOKEN}" | python3 -m snapcraft.cli login --with -
+python3 -m snapcraft.cli upload "$OBJECT" --release="${RELEASE_CHANNEL}"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # Notify slack channel of build success
