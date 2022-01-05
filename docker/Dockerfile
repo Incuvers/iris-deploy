@@ -52,7 +52,7 @@ RUN apt update && apt dist-upgrade --yes && apt install --yes sudo locales && lo
 COPY apt-pkgs.txt /tmp/apt-pkgs.txt
 RUN xargs -a apt-pkgs.txt sudo apt install -y --no-install-recommends
 COPY requirements.txt /tmp/requirements.txt
-RUN python3 -m pip install --upgrade pip &&
+RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install -r requirements.txt
 
 # Set the proper environment.
