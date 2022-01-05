@@ -5,10 +5,7 @@ set -e
 
 # cli
 OKG="\033[92m"
-# WARN="\033[93m"
-# FAIL="\033[91m"
 OKB="\033[94m"
-# UDL="\033[4m"
 NC="\033[0m"
 SHELL="/bin/bash"
 
@@ -27,9 +24,6 @@ OBJECT="iris-incuvers-prod.snap"
 # Snap release channel
 RELEASE_CHANNEL="edge"
 
-# ensure snapcraft binary is discoverable
-export PATH="/snap/bin:$PATH"
-echo "$PATH"
 # handle all non-zero exit status codes with a slack notification
 trap 'handler $?' EXIT
 
@@ -50,8 +44,8 @@ printf "%b" "${OKG} ✓ ${NC}complete\n"
 # TODO: Add checksum cross-validation
 # login to snapcraft and release to edge
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
-echo "${INPUT_SNAP_TOKEN}" | snapcraft login --with -
-snapcraft upload "$OBJECT" --release="${RELEASE_CHANNEL}"
+echo "${INPUT_SNAP_TOKEN}" | /snap/snapcraft/current/bin/python3 /snap/snapcraft/current/bin/snapcraft login --with -
+/snap/snapcraft/current/bin/python3 /snap/snapcraft/current/bin/snapcraft upload "$OBJECT" --release="${RELEASE_CHANNEL}"
 printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # Notify slack channel of build success
