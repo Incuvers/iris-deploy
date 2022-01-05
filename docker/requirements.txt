@@ -3,3 +3,4 @@ snapcraft
 pyaml
 click
 tabulate
+pymacaroons
