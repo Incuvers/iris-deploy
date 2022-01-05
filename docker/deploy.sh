@@ -47,6 +47,9 @@ printf "%b" "${OKG} ✓ ${NC}complete\n"
 
 # TODO: Add checksum cross-validation
 
+# validate snapcraft install
+python3 -m pip install snapcraft
+
 # login to snapcraft and release to edge
 printf "%b" "${OKB}Publishing ${OBJECT} to ${RELEASE_CHANNEL}${NC}\n"
 echo "${INPUT_SNAP_TOKEN}" | snapcraft login --with -
